@@ -42,42 +42,6 @@ recognizer.save("face_recognizer.yml")
 print("Training comlete and model saved. ")
 
 
-
-
-# try:
-#     while True:
-#         frame = camera.read_frame()  # Capture a frame from the camera
-#         faces = face_detector.detect_faces(frame)  # Detect faces
-
-#         for (x, y, w, h) in faces:
-#             face_region = frame[y:y + h, x:x + w]
-#             gray_face = cv2.cvtColor(face_region, cv2.COLOR_BGR2GRAY)
-#             resized_face = cv2.resize(gray_face, (200, 200))
-
-#             # Recognize face using LBPH model
-#             label, confidence = recognizer.predict(resized_face)
-
-#             # Draw bounding box and label on the frame
-#             cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
-#             cv2.putText(frame, f"ID: {label} Confidence: {confidence:.2f}", (x, y - 10),
-#                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)
-
-#         # Display the frame
-#         cv2.imshow("Real-time Face Recognition", frame)
-
-#         # Exit if 'q' is pressed
-#         if cv2.waitKey(1) & 0xFF in {ord('q'), 27}:
-#             break
-
-# except RuntimeError as e:
-#     print(f"Error: {e}")
-# finally:
-#     camera.release()
-#     cv2.destroyAllWindows()
-
-
-
-
 # Set parameters
 CONFIDENCE_THRESHOLD = 60.0  # Confidence threshold for recognition
 MAX_CONFIDENCE = 100.0       # Maximum confidence considered for 0% similarity
@@ -119,49 +83,3 @@ except RuntimeError as e:
 finally:
     camera.release()
     cv2.destroyAllWindows()
-
-
-
-
-
-
-# CONFIDENCE_THRESHOLD = 80.0 
-# try :
-#     while True:
-#         frame = camera.read_frame()
-#         faces = face_detector.detect_faces(frame)
-
-#         for (x, y, w, h) in faces:
-#             face_region = frame[y:y + h, x:x + w]
-#             gray_face = cv2.cvtColor(face_region, cv2.COLOR_BGR2GRAY)
-#             resized_face = cv2.resize(gray_face, (200, 200))
-
-#             # Recognize face using LBPH model
-#             label, confidence = recognizer.predict(resized_face)
-
-#             if confidence < CONFIDENCE_THRESHOLD:
-#                 # Recognized person: draw bounding box and label
-#                 cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
-#                 cv2.putText(frame, f"ID: {label} Confidence: {confidence:.2f}", 
-#                             (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)
-#             else:
-#                 # Not recognized: draw bounding box and display "Not recognized"
-#                 cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 2)  # Red box for unrecognized faces
-#                 cv2.putText(frame, "Not recognized", (x, y - 10), 
-#                             cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 1)
-
-#         # Display the frame
-#         cv2.imshow("Real-time Face Recognition", frame)
-
-
-
-#         if cv2.waitKey(1) & 0xFF in {ord('q'), 27}:
-#             break
-
-
-# except RuntimeError as e:
-#     exit(1)
-# finally:
-#     camera.release()
-#     cv2.destroyAllWindows()
-#     print("Program terminated gracefully.")
